@@ -1,0 +1,17 @@
+﻿<nav class="navbar navbar-default col-md-12">
+    <div class="container-fluid">
+        <div class="navbar-header col-md-6 ">
+            <a class="navbar-brand " href="#">Personel Yönetim Sistemi</a>
+        </div>
+        <ul class="nav navbar-nav col-md-6 ">
+            <li><a href="/Departman">Departmanlar</a></li>
+            <li><a href="/Personel">Personeller</a></li>
+            @if (User.IsInRole("A"))
+            {
+                <li><a href="/Kullanici">Kullanıcılar</a></li>
+            }
+            <li><a href="/Security/Logout">Çıkış Yap</a></li>
+            <a style="margin-left:40px "> Hoş Geldiniz @HttpContext.Current.User.Identity.Name</a>
+        </ul>
+    </div>
+</nav>

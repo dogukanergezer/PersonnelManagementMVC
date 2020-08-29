@@ -1,0 +1,40 @@
+﻿@using PersonelMVCUI.Models.EntityFramework
+@model List<Departman>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a class="btn btn-primary" style="align-items:center" href="/Departman/Yeni">Yeni Departman Ekle</a>
+@DateTime.Now
+<h2>Departman Listesi</h2>
+<table class="table table-bordered" id="tblDepartmanlar">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ad</th>
+            <th>Personeller</th>
+            <th>Güncelle</th>
+            <th>Sil</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var departman in Model)
+        {
+            <tr>
+                <td>@departman.Id</td>
+                <td>@departman.Ad</td>
+                <td>
+                    @Ajax.ActionLink("Personelleri Göster", "PersonelleriListele", "Personel", new
+                    { id = departman.Id }, new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "personelListesi" }, new { @class = "btn btn-info" })
+                </td>
+                <td><a class="btn btn-success" href="/Departman/Guncelle/@departman.Id">Güncelle</a></td>
+                <td><a class="btn btn-danger " href="/Departman/Sil/@departman.Id">Sil</a></td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+<div id="personelListesi"></div>
